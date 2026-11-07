@@ -1,0 +1,36 @@
+﻿<Window x:Class="FilmStudioAppEZ.SemkaGroupFormWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FilmStudioAppEZ"
+        mc:Ignorable="d"
+        Icon="Images/icon-redactproect.png"
+        Title="Управление съемочной группой" Height="260" Width="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="140"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Выбор группы -->
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Съёмочная группа:" VerticalAlignment="Center" Margin="0,5"/>
+        <ComboBox x:Name="cbGruppa" Grid.Row="0" Grid.Column="1" Margin="0,5" Height="25" DisplayMemberPath="Название_группы" SelectedValuePath="Код_съемочной_группы"/>
+
+        <!-- Выбор сотрудника -->
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Сотрудник студии:" VerticalAlignment="Center" Margin="0,5"/>
+        <ComboBox x:Name="cbSotrudnik" Grid.Row="1" Grid.Column="1" Margin="0,5" Height="25" SelectedValuePath="Код_сотрудника"/>
+
+        <!-- Кнопки управления -->
+        <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="btnSohranit" Content="сохранить" Background="#0EA5E9" Foreground="White" Width="110" Height="32" Margin="0,0,10,0" Click="btnSohranit_Click"/>
+            <Button x:Name="btnOtmena" Content="сбросить" Background="#CBD5E1" Foreground="Black" Width="110" Height="32" Click="btnOtmena_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

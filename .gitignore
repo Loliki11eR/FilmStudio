@@ -1,0 +1,19 @@
+# Скомпилированные файлы
+
+[Bb]in/
+[Oo]bj/
+
+# Файлы настроек Visual Studio
+
+.vs/
+*.user
+*.suo
+*.userprefs
+
+# Кэш NuGet
+
+*.nupkg
+packages/
+
+# Прочее
+*.log

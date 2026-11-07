@@ -1,0 +1,47 @@
+﻿<Window x:Class="FilmStudioAppEZ.PloshadkaFormWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FilmStudioAppEZ"
+        mc:Ignorable="d"
+        Icon="Images/icon-redactproect.png"
+        Title="Управление площадкой" Height="320" Width="400" 
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Адрес -->
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Адрес площадки:" VerticalAlignment="Center" Margin="0,5"/>
+        <TextBox x:Name="txtAdres" Grid.Row="0" Grid.Column="1" Margin="0,5" Height="25"/>
+
+        <!-- Тип площадки -->
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Тип площадки:" VerticalAlignment="Center" Margin="0,5"/>
+        <ComboBox x:Name="cbTipPloshadki" Grid.Row="1" Grid.Column="1" Margin="0,5" Height="25" DisplayMemberPath="Наименование" SelectedValuePath="Код_типа_площадки"/>
+
+        <!-- Стоимость аренды -->
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Стоимость в день (руб):" VerticalAlignment="Center" Margin="0,5"/>
+        <TextBox x:Name="txtStoimost" Grid.Row="2" Grid.Column="1" Margin="0,5" Height="25"/>
+
+        <!-- Вместимость -->
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Вместимость (чел):" VerticalAlignment="Center" Margin="0,5"/>
+        <TextBox x:Name="txtVmestimost" Grid.Row="3" Grid.Column="1" Margin="0,5" Height="25"/>
+
+        <!-- Кнопки управления -->
+        <StackPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="btnSohranit" Content="сохранить" Background="#0EA5E9" Foreground="White" Width="110" Height="32" Margin="0,0,10,0" Click="btnSohranit_Click"/>
+            <Button x:Name="btnOtmena" Content="сбросить" Background="#CBD5E1" Foreground="Black" Width="110" Height="32" Click="btnOtmena_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

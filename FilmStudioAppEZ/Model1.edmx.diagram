@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cd69077f42354e68be94872cfb832fa9" Name="Diagram1">
+        <EntityTypeShape EntityType="FilmStudioEZModel.График_съемок" Width="1.5" PointX="3" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilmStudioEZModel.Жанр" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilmStudioEZModel.Затрата" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilmStudioEZModel.Площадка" Width="1.5" PointX="0.75" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilmStudioEZModel.Пользователь" Width="1.5" PointX="10" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilmStudioEZModel.Проект" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilmStudioEZModel.Прокат" Width="1.5" PointX="5.25" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilmStudioEZModel.Роль" Width="1.5" PointX="7.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilmStudioEZModel.Состав_группы" Width="1.5" PointX="6" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilmStudioEZModel.Сотрудник" Width="1.5" PointX="3.75" PointY="24.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilmStudioEZModel.Специализация" Width="1.5" PointX="1.5" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilmStudioEZModel.Статус_проекта" Width="1.5" PointX="0.75" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilmStudioEZModel.Съемочная_группа" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilmStudioEZModel.Тип_затраты" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilmStudioEZModel.Тип_площадки" Width="1.5" PointX="1.5" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilmStudioEZModel.Тип_проекта" Width="1.5" PointX="0.75" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilmStudioEZModel.Целевая_аудитория" Width="1.5" PointX="0.75" PointY="21.25" IsExpanded="true" />
+        <AssociationConnector Association="FilmStudioEZModel.FK__График_съ__Площа__571DF1D5" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmStudioEZModel.FK__Проект__Жанр__5AEE82B9" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmStudioEZModel.FK__Затрата__Проект__619B8048" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmStudioEZModel.FK__Затрата__Тип_зат__628FA481" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmStudioEZModel.FK__Площадка__Тип__5441852A" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmStudioEZModel.FK__Проект__Площадка__5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmStudioEZModel.FK__Пользоват__Код_р__4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmStudioEZModel.FK__Проект__Статус__5BE2A6F2" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmStudioEZModel.FK__Проект__Съемочна__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmStudioEZModel.FK__Проект__Тип__59FA5E80" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmStudioEZModel.FK__Проект__Целевая___5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmStudioEZModel.FK__Прокат__Проект__656C112C" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmStudioEZModel.FK__Состав_гр__Сотру__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmStudioEZModel.FK__Состав_гр__Съемо__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmStudioEZModel.FK__Сотрудник__Специ__4D94879B" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

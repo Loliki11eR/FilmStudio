@@ -1,0 +1,46 @@
+﻿<Window x:Class="FilmStudioAppEZ.RegWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FilmStudioAppEZ"
+        mc:Ignorable="d"
+        Title="Создание пользователя" Height="340" Width="400" 
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="#F5F5F5">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="130"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- фио -->
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="ФИО сотрудника:" VerticalAlignment="Center" Margin="0,8" Foreground="#1E293B" FontSize="13"/>
+        <TextBox x:Name="txtFio" Grid.Row="0" Grid.Column="1" Margin="0,5" Height="26" VerticalContentAlignment="Center"/>
+
+        <!-- логин -->
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Логин:" VerticalAlignment="Center" Margin="0,8" Foreground="#1E293B" FontSize="13"/>
+        <TextBox x:Name="txtLogin" Grid.Row="1" Grid.Column="1" Margin="0,5" Height="26" VerticalContentAlignment="Center"/>
+
+        <!-- пароль -->
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Пароль:" VerticalAlignment="Center" Margin="0,8" Foreground="#1E293B" FontSize="13"/>
+        <PasswordBox x:Name="txtPassword" Grid.Row="2" Grid.Column="1" Margin="0,5" Height="26" VerticalContentAlignment="Center"/>
+
+        <!-- роль пользователя -->
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Роль в системе:" VerticalAlignment="Center" Margin="0,8" Foreground="#1E293B" FontSize="13"/>
+        <ComboBox x:Name="cbRol" Grid.Row="3" Grid.Column="1" Margin="0,5" Height="26" VerticalContentAlignment="Center" DisplayMemberPath="Наименование" SelectedValuePath="Код_роли"/>
+
+        <!-- панель кнопок -->
+        <StackPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,15,0,0">
+            <Button x:Name="btnSohranit" Content="сохранить" Background="#0EA5E9" Foreground="White" FontWeight="SemiBold" Width="110" Height="32" Margin="0,0,10,0" Click="btnSohranit_Click" Cursor="Hand"/>
+            <Button x:Name="btnOtmena" Content="сбросить" Background="#CBD5E1" Foreground="Black" Width="110" Height="32" Click="btnOtmena_Click" Cursor="Hand"/>
+        </StackPanel>
+    </Grid>
+</Window>

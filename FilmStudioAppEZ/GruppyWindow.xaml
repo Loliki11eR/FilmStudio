@@ -1,0 +1,53 @@
+﻿<Window x:Class="FilmStudioAppEZ.GruppyWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FilmStudioAppEZ"
+        mc:Ignorable="d"
+        Title="Управление съёмочными группами" Height="400" Width="500" WindowStartupLocation="CenterScreen">
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- поле ввода названия -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
+            <TextBlock Text="Название группы:" VerticalAlignment="Center" Margin="0,0,10,0" FontSize="14"/>
+            <TextBox x:Name="txtNazvanieGruppy" Width="200" Height="28"/>
+            <Button x:Name="btnDobavit" Content="создать" Background="#0EA5E9" Foreground="White" Width="90" Height="28" Margin="10,0,0,0" Click="btnDobavit_Click"/>
+        </StackPanel>
+
+        <!-- таблица групп -->
+        <DataGrid x:Name="dgGruppy" Grid.Row="1" 
+                  AutoGenerateColumns="False" 
+                  IsReadOnly="True"
+                  SelectionMode="Single"
+                  CanUserAddRows="False"
+                  HeadersVisibility="Column"
+                  GridLinesVisibility="Horizontal"
+                  Margin="0,0,0,10">
+
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="#0EA5E9"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="FontWeight" Value="SemiBold"/>
+                    <Setter Property="Padding" Value="8,6"/>
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="id" Binding="{Binding Код_съемочной_группы}" Width="60"/>
+                <DataGridTextColumn Header="название группы" Binding="{Binding Название_группы}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- панель удаления -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left">
+            <Button x:Name="btnUdalit" Content="удалить выбранную" Background="#EF4444" Foreground="White" Width="150" Height="32" Click="btnUdalit_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

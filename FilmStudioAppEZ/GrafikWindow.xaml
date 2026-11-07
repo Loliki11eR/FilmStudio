@@ -1,0 +1,64 @@
+﻿<Window x:Class="FilmStudioAppEZ.GrafikWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FilmStudioAppEZ"
+        mc:Ignorable="d"
+        Icon="Images/icon-grafik.png"
+        Title="График съёмок" Height="480" Width="1000" WindowStartupLocation="CenterScreen">
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- панель фильтрации -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
+            <TextBlock Text="фильтр по проекту:" VerticalAlignment="Center" Margin="0,0,10,0" FontSize="14"/>
+            <ComboBox x:Name="cmbFiltrProekt" Width="180" Height="28" SelectionChanged="cmbFiltr_SelectionChanged"/>
+
+            <TextBlock Text="фильтр по дате:" VerticalAlignment="Center" Margin="20,0,10,0" FontSize="14"/>
+            <DatePicker x:Name="dpFiltrData" Width="150" Height="28" SelectedDateChanged="cmbFiltr_SelectionChanged"/>
+
+            <Button x:Name="btnSbros" Content="сбросить" Width="90" Height="28" Margin="15,0,0,0" Click="btnSbros_Click" Background="#CBD5E1"/>
+        </StackPanel>
+
+        <!-- таблица графиков съемок -->
+        <DataGrid x:Name="dgGrafik" Grid.Row="1" 
+                  AutoGenerateColumns="False" 
+                  IsReadOnly="True"
+                  SelectionMode="Single"
+                  CanUserAddRows="False"
+                  HeadersVisibility="Column"
+                  GridLinesVisibility="Horizontal"
+                  Margin="0,0,0,10">
+
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="#0EA5E9"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="FontWeight" Value="SemiBold"/>
+                    <Setter Property="Padding" Value="8,6"/>
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="id" Binding="{Binding Код_графика_съемок}" Width="40"/>
+                <DataGridTextColumn Header="дата" Binding="{Binding Дата, StringFormat={}{0:dd.MM.yyyy}}" Width="100"/>
+                <DataGridTextColumn Header="время" Binding="{Binding Время}" Width="80"/>
+                <DataGridTextColumn Header="площадка (адрес)" Binding="{Binding Площадка1.Адрес}" Width="250"/>
+                <DataGridTextColumn Header="сцена" Binding="{Binding Сцена}" Width="150"/>
+                <DataGridTextColumn Header="набор сотрудников" Binding="{Binding Набор_сотрудников}" Width="150"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- панель кнопок -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left">
+            <Button x:Name="btnDobavit" Content="добавить" Background="#0EA5E9" Foreground="White" Width="110" Height="32" Margin="0,0,10,0" Click="btnDobavit_Click"/>
+            <Button x:Name="btnRedaktirovat" Content="редактировать" Background="#0EA5E9" Foreground="White" Width="130" Height="32" Margin="0,0,10,0" Click="btnRedaktirovat_Click"/>
+            <Button x:Name="btnUdalit" Content="удалить" Background="#EF4444" Foreground="White" Width="110" Height="32" Click="btnUdalit_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

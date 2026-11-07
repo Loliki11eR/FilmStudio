@@ -1,0 +1,62 @@
+﻿<Window x:Class="FilmStudioAppEZ.ProektFormWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FilmStudioAppEZ"
+        mc:Ignorable="d"
+        Icon="Images/icon-redactproect.png"
+        Title="Управление проектом" Height="450" Width="400" 
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="140"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Название -->
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Название проекта:" VerticalAlignment="Center" Margin="0,5"/>
+        <TextBox x:Name="txtNazvanie" Grid.Row="0" Grid.Column="1" Margin="0,5" Height="25"/>
+
+        <!-- Жанр -->
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Жанр:" VerticalAlignment="Center" Margin="0,5"/>
+        <ComboBox x:Name="cbZhanr" Grid.Row="1" Grid.Column="1" Margin="0,5" Height="25" DisplayMemberPath="Наименование" SelectedValuePath="Код_жанра"/>
+
+        <!-- Бюджет -->
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Бюджет (руб):" VerticalAlignment="Center" Margin="0,5"/>
+        <TextBox x:Name="txtBudzhet" Grid.Row="2" Grid.Column="1" Margin="0,5" Height="25"/>
+
+        <!-- Дата начала съемок -->
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Дата начала съемок:" VerticalAlignment="Center" Margin="0,5"/>
+        <DatePicker x:Name="dpDataNachala" Grid.Row="3" Grid.Column="1" Margin="0,5" Height="25"/>
+
+        <!-- Дата окончания съемок -->
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="Дата окончания:" VerticalAlignment="Center" Margin="0,5"/>
+        <DatePicker x:Name="dpDataOkonchaniya" Grid.Row="4" Grid.Column="1" Margin="0,5" Height="25"/>
+
+        <!-- Статус проекта -->
+        <TextBlock Grid.Row="5" Grid.Column="0" Text="Статус:" VerticalAlignment="Center" Margin="0,5"/>
+        <ComboBox x:Name="cbStatus" Grid.Row="5" Grid.Column="1" Margin="0,5" Height="25" DisplayMemberPath="Наименование" SelectedValuePath="Код_статуса_проекта"/>
+
+        <!-- Целевая аудитория -->
+        <TextBlock Grid.Row="6" Grid.Column="0" Text="Целевая аудитория:" VerticalAlignment="Center" Margin="0,5"/>
+        <ComboBox x:Name="cbAuditoriya" Grid.Row="6" Grid.Column="1" Margin="0,5" Height="25" DisplayMemberPath="Наименование" SelectedValuePath="Код_целевой_аудитории"/>
+
+        <!-- Кнопки управления -->
+        <StackPanel Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="btnSohranit" Content="сохранить" Background="#0EA5E9" Foreground="White" Width="110" Height="32" Margin="0,0,10,0" Click="btnSohranit_Click"/>
+            <Button x:Name="btnOtmena" Content="сбросить" Background="#CBD5E1" Foreground="Black" Width="110" Height="32" Click="btnOtmena_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

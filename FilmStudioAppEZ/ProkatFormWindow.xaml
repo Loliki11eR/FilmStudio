@@ -1,0 +1,52 @@
+﻿<Window x:Class="FilmStudioAppEZ.ProkatFormWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FilmStudioAppEZ"
+        mc:Ignorable="d"
+        Icon="Images/icon-redactproect.png"
+        Title="Управление прокатом" Height="340" Width="400" 
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Выбор проекта -->
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Проект киностудии:" VerticalAlignment="Center" Margin="0,5"/>
+        <ComboBox x:Name="cbProekt" Grid.Row="0" Grid.Column="1" Margin="0,5" Height="25" DisplayMemberPath="Название" SelectedValuePath="Код_проекта"/>
+
+        <!-- Дата выхода -->
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Дата выхода в прокат:" VerticalAlignment="Center" Margin="0,5"/>
+        <DatePicker x:Name="dpDataVyhoda" Grid.Row="1" Grid.Column="1" Margin="0,5" Height="25"/>
+
+        <!-- Количество кинотеатров -->
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Кол-во кинотеатров:" VerticalAlignment="Center" Margin="0,5"/>
+        <TextBox x:Name="txtKinoteatry" Grid.Row="2" Grid.Column="1" Margin="0,5" Height="25"/>
+
+        <!-- Сборы -->
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Кассовые сборы (руб):" VerticalAlignment="Center" Margin="0,5"/>
+        <TextBox x:Name="txtSbory" Grid.Row="3" Grid.Column="1" Margin="0,5" Height="25"/>
+
+        <!-- Рейтинг -->
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="Рейтинг фильма (0-10):" VerticalAlignment="Center" Margin="0,5"/>
+        <TextBox x:Name="txtReyting" Grid.Row="4" Grid.Column="1" Margin="0,5" Height="25"/>
+
+        <!-- Кнопки управления -->
+        <StackPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="btnSohranit" Content="сохранить" Background="#0EA5E9" Foreground="White" Width="110" Height="32" Margin="0,0,10,0" Click="btnSohranit_Click"/>
+            <Button x:Name="btnOtmena" Content="сбросить" Background="#CBD5E1" Foreground="Black" Width="110" Height="32" Click="btnOtmena_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

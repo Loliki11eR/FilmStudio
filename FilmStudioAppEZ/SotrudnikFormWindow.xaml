@@ -1,0 +1,75 @@
+﻿<Window x:Class="FilmStudioAppEZ.SotrudnikFormWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FilmStudioAppEZ"
+        mc:Ignorable="d"
+        Icon="Images/icon-employee.png"
+        Title="Сотрудник" Height="400" Width="500"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+    <Grid Margin="25">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="130"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- фамилия -->
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="фамилия:" VerticalAlignment="Center" 
+                   Margin="0,0,10,12" Foreground="#1E293B" FontSize="13"/>
+        <TextBox x:Name="txtFamilia" Grid.Row="0" Grid.Column="1" Height="28" Margin="0,0,0,12"
+                 Foreground="#1E293B" Background="White" BorderBrush="#CBD5E1" FontSize="13"/>
+
+        <!-- имя -->
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="имя:" VerticalAlignment="Center" 
+                   Margin="0,0,10,12" Foreground="#1E293B" FontSize="13"/>
+        <TextBox x:Name="txtImya" Grid.Row="1" Grid.Column="1" Height="28" Margin="0,0,0,12"
+                 Foreground="#1E293B" Background="White" BorderBrush="#CBD5E1" FontSize="13"/>
+
+        <!-- специализация - теперь выпадающий список -->
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="специализация:" VerticalAlignment="Center" 
+                   Margin="0,0,10,12" Foreground="#1E293B" FontSize="13"/>
+        <ComboBox x:Name="cmbSpecializacia" Grid.Row="2" Grid.Column="1" Height="28" Margin="0,0,0,12"
+                  Foreground="#1E293B" Background="White" BorderBrush="#CBD5E1" FontSize="13"/>
+
+        <!-- телефон -->
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="телефон:" VerticalAlignment="Center" 
+                   Margin="0,0,10,12" Foreground="#1E293B" FontSize="13"/>
+        <TextBox x:Name="txtTelefon" Grid.Row="3" Grid.Column="1" Height="28" Margin="0,0,0,12"
+                 Foreground="#1E293B" Background="White" BorderBrush="#CBD5E1" FontSize="13"/>
+
+        <!-- email -->
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="email:" VerticalAlignment="Center" 
+                   Margin="0,0,10,12" Foreground="#1E293B" FontSize="13"/>
+        <TextBox x:Name="txtEmail" Grid.Row="4" Grid.Column="1" Height="28" Margin="0,0,0,12"
+                 Foreground="#1E293B" Background="White" BorderBrush="#CBD5E1" FontSize="13"/>
+
+        <!-- ставка -->
+        <TextBlock Grid.Row="5" Grid.Column="0" Text="ставка:" VerticalAlignment="Center" 
+                   Margin="0,0,10,12" Foreground="#1E293B" FontSize="13"/>
+        <TextBox x:Name="txtStavka" Grid.Row="5" Grid.Column="1" Height="28" Margin="0,0,0,12"
+                 Foreground="#1E293B" Background="White" BorderBrush="#CBD5E1" FontSize="13"/>
+
+        <!-- кнопки -->
+        <StackPanel Grid.Row="7" Grid.ColumnSpan="2" Orientation="Horizontal" 
+                    HorizontalAlignment="Right" Margin="0,15,0,0">
+            <Button x:Name="btnSohranit" Content="сохранить" 
+                    Background="#0EA5E9" Foreground="White"
+                    Width="110" Height="32" Margin="0,0,10,0" Click="btnSohranit_Click"/>
+            <Button x:Name="btnOtmena" Content="отмена" 
+                    Background="#E2E8F0" Foreground="#1E293B"
+                    Width="110" Height="32" Click="btnOtmena_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

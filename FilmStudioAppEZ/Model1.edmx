@@ -1,0 +1,1063 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище FilmStudioEZModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="График_съемок">
+          <Key>
+            <PropertyRef Name="Код_графика_съемок" />
+          </Key>
+          <Property Name="Код_графика_съемок" Type="int" Nullable="false" />
+          <Property Name="Дата" Type="date" Nullable="false" />
+          <Property Name="Время" Type="time" Precision="7" />
+          <Property Name="Площадка" Type="int" />
+          <Property Name="Сцена" Type="varchar" MaxLength="255" />
+          <Property Name="Набор_сотрудников" Type="int" />
+        </EntityType>
+        <EntityType Name="Жанр">
+          <Key>
+            <PropertyRef Name="Код_жанра" />
+          </Key>
+          <Property Name="Код_жанра" Type="int" Nullable="false" />
+          <Property Name="Наименование" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Затрата">
+          <Key>
+            <PropertyRef Name="Код_затраты" />
+          </Key>
+          <Property Name="Код_затраты" Type="int" Nullable="false" />
+          <Property Name="Проект" Type="int" Nullable="false" />
+          <Property Name="Тип_затрат" Type="int" Nullable="false" />
+          <Property Name="Сумма" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="Дата" Type="date" />
+        </EntityType>
+        <EntityType Name="Площадка">
+          <Key>
+            <PropertyRef Name="Код_площадки" />
+          </Key>
+          <Property Name="Код_площадки" Type="int" Nullable="false" />
+          <Property Name="Адрес" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Тип" Type="int" />
+          <Property Name="Стоимость_аренды_в_день" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="Вместимость" Type="int" />
+        </EntityType>
+        <EntityType Name="Пользователь">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Логин" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ПарольХеш" Type="varchar(max)" Nullable="false" />
+          <Property Name="Имя" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Код_роли" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Проект">
+          <Key>
+            <PropertyRef Name="Код_проекта" />
+          </Key>
+          <Property Name="Код_проекта" Type="int" Nullable="false" />
+          <Property Name="Название" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Тип" Type="int" />
+          <Property Name="Жанр" Type="int" />
+          <Property Name="Бюджет" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="Дата_начала_съемок" Type="date" />
+          <Property Name="Дата_окончания_съемок" Type="date" />
+          <Property Name="Статус" Type="int" />
+          <Property Name="Целевая_аудитория" Type="int" />
+          <Property Name="Съемочная_группа" Type="int" />
+          <Property Name="Площадка" Type="int" />
+        </EntityType>
+        <EntityType Name="Прокат">
+          <Key>
+            <PropertyRef Name="Код_проката" />
+          </Key>
+          <Property Name="Код_проката" Type="int" Nullable="false" />
+          <Property Name="Проект" Type="int" Nullable="false" />
+          <Property Name="Дата_выхода" Type="date" />
+          <Property Name="Количество_кинотеатров" Type="int" />
+          <Property Name="Сборы" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="Рейтинг" Type="decimal" Precision="3" Scale="1" />
+        </EntityType>
+        <EntityType Name="Роль">
+          <Key>
+            <PropertyRef Name="Код_роли" />
+          </Key>
+          <Property Name="Код_роли" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Наименование" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Состав_группы">
+          <Key>
+            <PropertyRef Name="Код_состава_группы" />
+          </Key>
+          <Property Name="Код_состава_группы" Type="int" Nullable="false" />
+          <Property Name="Съемочная_группа" Type="int" Nullable="false" />
+          <Property Name="Сотрудник" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Сотрудник">
+          <Key>
+            <PropertyRef Name="Код_сотрудника" />
+          </Key>
+          <Property Name="Код_сотрудника" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Табельный_номер" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Фамилия" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Имя" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Специализация" Type="int" />
+          <Property Name="Ставка" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="Номер_телефона" Type="varchar" MaxLength="20" />
+          <Property Name="Почта" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Специализация">
+          <Key>
+            <PropertyRef Name="Код_специализации" />
+          </Key>
+          <Property Name="Код_специализации" Type="int" Nullable="false" />
+          <Property Name="Наименование" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Статус_проекта">
+          <Key>
+            <PropertyRef Name="Код_статуса_проекта" />
+          </Key>
+          <Property Name="Код_статуса_проекта" Type="int" Nullable="false" />
+          <Property Name="Наименование" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Съемочная_группа">
+          <Key>
+            <PropertyRef Name="Код_съемочной_группы" />
+          </Key>
+          <Property Name="Код_съемочной_группы" Type="int" Nullable="false" />
+          <Property Name="Название_группы" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Тип_затраты">
+          <Key>
+            <PropertyRef Name="Код_типа_затраты" />
+          </Key>
+          <Property Name="Код_типа_затраты" Type="int" Nullable="false" />
+          <Property Name="Наименование" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Тип_площадки">
+          <Key>
+            <PropertyRef Name="Код_типа_площадки" />
+          </Key>
+          <Property Name="Код_типа_площадки" Type="int" Nullable="false" />
+          <Property Name="Наименование" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Тип_проекта">
+          <Key>
+            <PropertyRef Name="Код_типа_проекта" />
+          </Key>
+          <Property Name="Код_типа_проекта" Type="int" Nullable="false" />
+          <Property Name="Наименование" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Целевая_аудитория">
+          <Key>
+            <PropertyRef Name="Код_целевой_аудитории" />
+          </Key>
+          <Property Name="Код_целевой_аудитории" Type="int" Nullable="false" />
+          <Property Name="Наименование" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__График_съ__Площа__571DF1D5">
+          <End Role="Площадка" Type="Self.Площадка" Multiplicity="0..1" />
+          <End Role="График_съемок" Type="Self.График_съемок" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Площадка">
+              <PropertyRef Name="Код_площадки" />
+            </Principal>
+            <Dependent Role="График_съемок">
+              <PropertyRef Name="Площадка" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Затрата__Проект__619B8048">
+          <End Role="Проект" Type="Self.Проект" Multiplicity="1" />
+          <End Role="Затрата" Type="Self.Затрата" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Проект">
+              <PropertyRef Name="Код_проекта" />
+            </Principal>
+            <Dependent Role="Затрата">
+              <PropertyRef Name="Проект" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Затрата__Тип_зат__628FA481">
+          <End Role="Тип_затраты" Type="Self.Тип_затраты" Multiplicity="1" />
+          <End Role="Затрата" Type="Self.Затрата" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Тип_затраты">
+              <PropertyRef Name="Код_типа_затраты" />
+            </Principal>
+            <Dependent Role="Затрата">
+              <PropertyRef Name="Тип_затрат" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Площадка__Тип__5441852A">
+          <End Role="Тип_площадки" Type="Self.Тип_площадки" Multiplicity="0..1" />
+          <End Role="Площадка" Type="Self.Площадка" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Тип_площадки">
+              <PropertyRef Name="Код_типа_площадки" />
+            </Principal>
+            <Dependent Role="Площадка">
+              <PropertyRef Name="Тип" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Пользоват__Код_р__4AB81AF0">
+          <End Role="Роль" Type="Self.Роль" Multiplicity="1" />
+          <End Role="Пользователь" Type="Self.Пользователь" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Роль">
+              <PropertyRef Name="Код_роли" />
+            </Principal>
+            <Dependent Role="Пользователь">
+              <PropertyRef Name="Код_роли" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Проект__Жанр__5AEE82B9">
+          <End Role="Жанр" Type="Self.Жанр" Multiplicity="0..1" />
+          <End Role="Проект" Type="Self.Проект" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Жанр">
+              <PropertyRef Name="Код_жанра" />
+            </Principal>
+            <Dependent Role="Проект">
+              <PropertyRef Name="Жанр" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Проект__Площадка__5EBF139D">
+          <End Role="Площадка" Type="Self.Площадка" Multiplicity="0..1" />
+          <End Role="Проект" Type="Self.Проект" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Площадка">
+              <PropertyRef Name="Код_площадки" />
+            </Principal>
+            <Dependent Role="Проект">
+              <PropertyRef Name="Площадка" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Проект__Статус__5BE2A6F2">
+          <End Role="Статус_проекта" Type="Self.Статус_проекта" Multiplicity="0..1" />
+          <End Role="Проект" Type="Self.Проект" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Статус_проекта">
+              <PropertyRef Name="Код_статуса_проекта" />
+            </Principal>
+            <Dependent Role="Проект">
+              <PropertyRef Name="Статус" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Проект__Съемочна__5DCAEF64">
+          <End Role="Съемочная_группа" Type="Self.Съемочная_группа" Multiplicity="0..1" />
+          <End Role="Проект" Type="Self.Проект" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Съемочная_группа">
+              <PropertyRef Name="Код_съемочной_группы" />
+            </Principal>
+            <Dependent Role="Проект">
+              <PropertyRef Name="Съемочная_группа" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Проект__Тип__59FA5E80">
+          <End Role="Тип_проекта" Type="Self.Тип_проекта" Multiplicity="0..1" />
+          <End Role="Проект" Type="Self.Проект" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Тип_проекта">
+              <PropertyRef Name="Код_типа_проекта" />
+            </Principal>
+            <Dependent Role="Проект">
+              <PropertyRef Name="Тип" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Проект__Целевая___5CD6CB2B">
+          <End Role="Целевая_аудитория" Type="Self.Целевая_аудитория" Multiplicity="0..1" />
+          <End Role="Проект" Type="Self.Проект" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Целевая_аудитория">
+              <PropertyRef Name="Код_целевой_аудитории" />
+            </Principal>
+            <Dependent Role="Проект">
+              <PropertyRef Name="Целевая_аудитория" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Прокат__Проект__656C112C">
+          <End Role="Проект" Type="Self.Проект" Multiplicity="1" />
+          <End Role="Прокат" Type="Self.Прокат" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Проект">
+              <PropertyRef Name="Код_проекта" />
+            </Principal>
+            <Dependent Role="Прокат">
+              <PropertyRef Name="Проект" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Состав_гр__Сотру__5165187F">
+          <End Role="Сотрудник" Type="Self.Сотрудник" Multiplicity="1" />
+          <End Role="Состав_группы" Type="Self.Состав_группы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сотрудник">
+              <PropertyRef Name="Код_сотрудника" />
+            </Principal>
+            <Dependent Role="Состав_группы">
+              <PropertyRef Name="Сотрудник" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Состав_гр__Съемо__5070F446">
+          <End Role="Съемочная_группа" Type="Self.Съемочная_группа" Multiplicity="1" />
+          <End Role="Состав_группы" Type="Self.Состав_группы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Съемочная_группа">
+              <PropertyRef Name="Код_съемочной_группы" />
+            </Principal>
+            <Dependent Role="Состав_группы">
+              <PropertyRef Name="Съемочная_группа" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Сотрудник__Специ__4D94879B">
+          <End Role="Специализация" Type="Self.Специализация" Multiplicity="0..1" />
+          <End Role="Сотрудник" Type="Self.Сотрудник" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Специализация">
+              <PropertyRef Name="Код_специализации" />
+            </Principal>
+            <Dependent Role="Сотрудник">
+              <PropertyRef Name="Специализация" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище FilmStudioEZModelContainer">
+          <EntitySet Name="График_съемок" EntityType="Self.График_съемок" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Жанр" EntityType="Self.Жанр" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Затрата" EntityType="Self.Затрата" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Площадка" EntityType="Self.Площадка" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Пользователь" EntityType="Self.Пользователь" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Проект" EntityType="Self.Проект" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Прокат" EntityType="Self.Прокат" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Роль" EntityType="Self.Роль" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Состав_группы" EntityType="Self.Состав_группы" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Сотрудник" EntityType="Self.Сотрудник" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Специализация" EntityType="Self.Специализация" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Статус_проекта" EntityType="Self.Статус_проекта" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Съемочная_группа" EntityType="Self.Съемочная_группа" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Тип_затраты" EntityType="Self.Тип_затраты" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Тип_площадки" EntityType="Self.Тип_площадки" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Тип_проекта" EntityType="Self.Тип_проекта" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Целевая_аудитория" EntityType="Self.Целевая_аудитория" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__График_съ__Площа__571DF1D5" Association="Self.FK__График_съ__Площа__571DF1D5">
+            <End Role="Площадка" EntitySet="Площадка" />
+            <End Role="График_съемок" EntitySet="График_съемок" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Затрата__Проект__619B8048" Association="Self.FK__Затрата__Проект__619B8048">
+            <End Role="Проект" EntitySet="Проект" />
+            <End Role="Затрата" EntitySet="Затрата" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Затрата__Тип_зат__628FA481" Association="Self.FK__Затрата__Тип_зат__628FA481">
+            <End Role="Тип_затраты" EntitySet="Тип_затраты" />
+            <End Role="Затрата" EntitySet="Затрата" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Площадка__Тип__5441852A" Association="Self.FK__Площадка__Тип__5441852A">
+            <End Role="Тип_площадки" EntitySet="Тип_площадки" />
+            <End Role="Площадка" EntitySet="Площадка" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Пользоват__Код_р__4AB81AF0" Association="Self.FK__Пользоват__Код_р__4AB81AF0">
+            <End Role="Роль" EntitySet="Роль" />
+            <End Role="Пользователь" EntitySet="Пользователь" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Проект__Жанр__5AEE82B9" Association="Self.FK__Проект__Жанр__5AEE82B9">
+            <End Role="Жанр" EntitySet="Жанр" />
+            <End Role="Проект" EntitySet="Проект" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Проект__Площадка__5EBF139D" Association="Self.FK__Проект__Площадка__5EBF139D">
+            <End Role="Площадка" EntitySet="Площадка" />
+            <End Role="Проект" EntitySet="Проект" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Проект__Статус__5BE2A6F2" Association="Self.FK__Проект__Статус__5BE2A6F2">
+            <End Role="Статус_проекта" EntitySet="Статус_проекта" />
+            <End Role="Проект" EntitySet="Проект" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Проект__Съемочна__5DCAEF64" Association="Self.FK__Проект__Съемочна__5DCAEF64">
+            <End Role="Съемочная_группа" EntitySet="Съемочная_группа" />
+            <End Role="Проект" EntitySet="Проект" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Проект__Тип__59FA5E80" Association="Self.FK__Проект__Тип__59FA5E80">
+            <End Role="Тип_проекта" EntitySet="Тип_проекта" />
+            <End Role="Проект" EntitySet="Проект" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Проект__Целевая___5CD6CB2B" Association="Self.FK__Проект__Целевая___5CD6CB2B">
+            <End Role="Целевая_аудитория" EntitySet="Целевая_аудитория" />
+            <End Role="Проект" EntitySet="Проект" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Прокат__Проект__656C112C" Association="Self.FK__Прокат__Проект__656C112C">
+            <End Role="Проект" EntitySet="Проект" />
+            <End Role="Прокат" EntitySet="Прокат" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Состав_гр__Сотру__5165187F" Association="Self.FK__Состав_гр__Сотру__5165187F">
+            <End Role="Сотрудник" EntitySet="Сотрудник" />
+            <End Role="Состав_группы" EntitySet="Состав_группы" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Состав_гр__Съемо__5070F446" Association="Self.FK__Состав_гр__Съемо__5070F446">
+            <End Role="Съемочная_группа" EntitySet="Съемочная_группа" />
+            <End Role="Состав_группы" EntitySet="Состав_группы" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Сотрудник__Специ__4D94879B" Association="Self.FK__Сотрудник__Специ__4D94879B">
+            <End Role="Специализация" EntitySet="Специализация" />
+            <End Role="Сотрудник" EntitySet="Сотрудник" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FilmStudioEZModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="График_съемок">
+          <Key>
+            <PropertyRef Name="Код_графика_съемок" />
+          </Key>
+          <Property Name="Код_графика_съемок" Type="Int32" Nullable="false" />
+          <Property Name="Дата" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Время" Type="Time" Precision="7" />
+          <Property Name="Площадка" Type="Int32" />
+          <Property Name="Сцена" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Набор_сотрудников" Type="Int32" />
+          <NavigationProperty Name="Площадка1" Relationship="Self.FK__График_съ__Площа__571DF1D5" FromRole="График_съемок" ToRole="Площадка" />
+        </EntityType>
+        <EntityType Name="Жанр">
+          <Key>
+            <PropertyRef Name="Код_жанра" />
+          </Key>
+          <Property Name="Код_жанра" Type="Int32" Nullable="false" />
+          <Property Name="Наименование" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Проект" Relationship="Self.FK__Проект__Жанр__5AEE82B9" FromRole="Жанр" ToRole="Проект" />
+        </EntityType>
+        <EntityType Name="Затрата">
+          <Key>
+            <PropertyRef Name="Код_затраты" />
+          </Key>
+          <Property Name="Код_затраты" Type="Int32" Nullable="false" />
+          <Property Name="Проект" Type="Int32" Nullable="false" />
+          <Property Name="Тип_затрат" Type="Int32" Nullable="false" />
+          <Property Name="Сумма" Type="Decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="Дата" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Проект1" Relationship="Self.FK__Затрата__Проект__619B8048" FromRole="Затрата" ToRole="Проект" />
+          <NavigationProperty Name="Тип_затраты" Relationship="Self.FK__Затрата__Тип_зат__628FA481" FromRole="Затрата" ToRole="Тип_затраты" />
+        </EntityType>
+        <EntityType Name="Площадка">
+          <Key>
+            <PropertyRef Name="Код_площадки" />
+          </Key>
+          <Property Name="Код_площадки" Type="Int32" Nullable="false" />
+          <Property Name="Адрес" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Тип" Type="Int32" />
+          <Property Name="Стоимость_аренды_в_день" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="Вместимость" Type="Int32" />
+          <NavigationProperty Name="График_съемок" Relationship="Self.FK__График_съ__Площа__571DF1D5" FromRole="Площадка" ToRole="График_съемок" />
+          <NavigationProperty Name="Тип_площадки" Relationship="Self.FK__Площадка__Тип__5441852A" FromRole="Площадка" ToRole="Тип_площадки" />
+          <NavigationProperty Name="Проект" Relationship="Self.FK__Проект__Площадка__5EBF139D" FromRole="Площадка" ToRole="Проект" />
+        </EntityType>
+        <EntityType Name="Пользователь">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Логин" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ПарольХеш" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Имя" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Код_роли" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Роль" Relationship="Self.FK__Пользоват__Код_р__4AB81AF0" FromRole="Пользователь" ToRole="Роль" />
+        </EntityType>
+        <EntityType Name="Проект">
+          <Key>
+            <PropertyRef Name="Код_проекта" />
+          </Key>
+          <Property Name="Код_проекта" Type="Int32" Nullable="false" />
+          <Property Name="Название" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Тип" Type="Int32" />
+          <Property Name="Жанр" Type="Int32" />
+          <Property Name="Бюджет" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="Дата_начала_съемок" Type="DateTime" Precision="0" />
+          <Property Name="Дата_окончания_съемок" Type="DateTime" Precision="0" />
+          <Property Name="Статус" Type="Int32" />
+          <Property Name="Целевая_аудитория" Type="Int32" />
+          <Property Name="Съемочная_группа" Type="Int32" />
+          <Property Name="Площадка" Type="Int32" />
+          <NavigationProperty Name="Жанр1" Relationship="Self.FK__Проект__Жанр__5AEE82B9" FromRole="Проект" ToRole="Жанр" />
+          <NavigationProperty Name="Затрата" Relationship="Self.FK__Затрата__Проект__619B8048" FromRole="Проект" ToRole="Затрата" />
+          <NavigationProperty Name="Площадка1" Relationship="Self.FK__Проект__Площадка__5EBF139D" FromRole="Проект" ToRole="Площадка" />
+          <NavigationProperty Name="Статус_проекта" Relationship="Self.FK__Проект__Статус__5BE2A6F2" FromRole="Проект" ToRole="Статус_проекта" />
+          <NavigationProperty Name="Съемочная_группа1" Relationship="Self.FK__Проект__Съемочна__5DCAEF64" FromRole="Проект" ToRole="Съемочная_группа" />
+          <NavigationProperty Name="Тип_проекта" Relationship="Self.FK__Проект__Тип__59FA5E80" FromRole="Проект" ToRole="Тип_проекта" />
+          <NavigationProperty Name="Целевая_аудитория1" Relationship="Self.FK__Проект__Целевая___5CD6CB2B" FromRole="Проект" ToRole="Целевая_аудитория" />
+          <NavigationProperty Name="Прокат" Relationship="Self.FK__Прокат__Проект__656C112C" FromRole="Проект" ToRole="Прокат" />
+        </EntityType>
+        <EntityType Name="Прокат">
+          <Key>
+            <PropertyRef Name="Код_проката" />
+          </Key>
+          <Property Name="Код_проката" Type="Int32" Nullable="false" />
+          <Property Name="Проект" Type="Int32" Nullable="false" />
+          <Property Name="Дата_выхода" Type="DateTime" Precision="0" />
+          <Property Name="Количество_кинотеатров" Type="Int32" />
+          <Property Name="Сборы" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="Рейтинг" Type="Decimal" Precision="3" Scale="1" />
+          <NavigationProperty Name="Проект1" Relationship="Self.FK__Прокат__Проект__656C112C" FromRole="Прокат" ToRole="Проект" />
+        </EntityType>
+        <EntityType Name="Роль">
+          <Key>
+            <PropertyRef Name="Код_роли" />
+          </Key>
+          <Property Name="Код_роли" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Наименование" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Пользователь" Relationship="Self.FK__Пользоват__Код_р__4AB81AF0" FromRole="Роль" ToRole="Пользователь" />
+        </EntityType>
+        <EntityType Name="Состав_группы">
+          <Key>
+            <PropertyRef Name="Код_состава_группы" />
+          </Key>
+          <Property Name="Код_состава_группы" Type="Int32" Nullable="false" />
+          <Property Name="Съемочная_группа" Type="Int32" Nullable="false" />
+          <Property Name="Сотрудник" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Сотрудник1" Relationship="Self.FK__Состав_гр__Сотру__5165187F" FromRole="Состав_группы" ToRole="Сотрудник" />
+          <NavigationProperty Name="Съемочная_группа1" Relationship="Self.FK__Состав_гр__Съемо__5070F446" FromRole="Состав_группы" ToRole="Съемочная_группа" />
+        </EntityType>
+        <EntityType Name="Сотрудник">
+          <Key>
+            <PropertyRef Name="Код_сотрудника" />
+          </Key>
+          <Property Name="Код_сотрудника" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Табельный_номер" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Фамилия" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Имя" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Специализация" Type="Int32" />
+          <Property Name="Ставка" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="Номер_телефона" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Почта" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Состав_группы" Relationship="Self.FK__Состав_гр__Сотру__5165187F" FromRole="Сотрудник" ToRole="Состав_группы" />
+          <NavigationProperty Name="Специализация1" Relationship="Self.FK__Сотрудник__Специ__4D94879B" FromRole="Сотрудник" ToRole="Специализация" />
+        </EntityType>
+        <EntityType Name="Специализация">
+          <Key>
+            <PropertyRef Name="Код_специализации" />
+          </Key>
+          <Property Name="Код_специализации" Type="Int32" Nullable="false" />
+          <Property Name="Наименование" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Сотрудник" Relationship="Self.FK__Сотрудник__Специ__4D94879B" FromRole="Специализация" ToRole="Сотрудник" />
+        </EntityType>
+        <EntityType Name="Статус_проекта">
+          <Key>
+            <PropertyRef Name="Код_статуса_проекта" />
+          </Key>
+          <Property Name="Код_статуса_проекта" Type="Int32" Nullable="false" />
+          <Property Name="Наименование" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Проект" Relationship="Self.FK__Проект__Статус__5BE2A6F2" FromRole="Статус_проекта" ToRole="Проект" />
+        </EntityType>
+        <EntityType Name="Съемочная_группа">
+          <Key>
+            <PropertyRef Name="Код_съемочной_группы" />
+          </Key>
+          <Property Name="Код_съемочной_группы" Type="Int32" Nullable="false" />
+          <Property Name="Название_группы" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Проект" Relationship="Self.FK__Проект__Съемочна__5DCAEF64" FromRole="Съемочная_группа" ToRole="Проект" />
+          <NavigationProperty Name="Состав_группы" Relationship="Self.FK__Состав_гр__Съемо__5070F446" FromRole="Съемочная_группа" ToRole="Состав_группы" />
+        </EntityType>
+        <EntityType Name="Тип_затраты">
+          <Key>
+            <PropertyRef Name="Код_типа_затраты" />
+          </Key>
+          <Property Name="Код_типа_затраты" Type="Int32" Nullable="false" />
+          <Property Name="Наименование" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Затрата" Relationship="Self.FK__Затрата__Тип_зат__628FA481" FromRole="Тип_затраты" ToRole="Затрата" />
+        </EntityType>
+        <EntityType Name="Тип_площадки">
+          <Key>
+            <PropertyRef Name="Код_типа_площадки" />
+          </Key>
+          <Property Name="Код_типа_площадки" Type="Int32" Nullable="false" />
+          <Property Name="Наименование" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Площадка" Relationship="Self.FK__Площадка__Тип__5441852A" FromRole="Тип_площадки" ToRole="Площадка" />
+        </EntityType>
+        <EntityType Name="Тип_проекта">
+          <Key>
+            <PropertyRef Name="Код_типа_проекта" />
+          </Key>
+          <Property Name="Код_типа_проекта" Type="Int32" Nullable="false" />
+          <Property Name="Наименование" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Проект" Relationship="Self.FK__Проект__Тип__59FA5E80" FromRole="Тип_проекта" ToRole="Проект" />
+        </EntityType>
+        <EntityType Name="Целевая_аудитория">
+          <Key>
+            <PropertyRef Name="Код_целевой_аудитории" />
+          </Key>
+          <Property Name="Код_целевой_аудитории" Type="Int32" Nullable="false" />
+          <Property Name="Наименование" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Проект" Relationship="Self.FK__Проект__Целевая___5CD6CB2B" FromRole="Целевая_аудитория" ToRole="Проект" />
+        </EntityType>
+        <Association Name="FK__График_съ__Площа__571DF1D5">
+          <End Role="Площадка" Type="Self.Площадка" Multiplicity="0..1" />
+          <End Role="График_съемок" Type="Self.График_съемок" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Площадка">
+              <PropertyRef Name="Код_площадки" />
+            </Principal>
+            <Dependent Role="График_съемок">
+              <PropertyRef Name="Площадка" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Проект__Жанр__5AEE82B9">
+          <End Role="Жанр" Type="Self.Жанр" Multiplicity="0..1" />
+          <End Role="Проект" Type="Self.Проект" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Жанр">
+              <PropertyRef Name="Код_жанра" />
+            </Principal>
+            <Dependent Role="Проект">
+              <PropertyRef Name="Жанр" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Затрата__Проект__619B8048">
+          <End Role="Проект" Type="Self.Проект" Multiplicity="1" />
+          <End Role="Затрата" Type="Self.Затрата" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Проект">
+              <PropertyRef Name="Код_проекта" />
+            </Principal>
+            <Dependent Role="Затрата">
+              <PropertyRef Name="Проект" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Затрата__Тип_зат__628FA481">
+          <End Role="Тип_затраты" Type="Self.Тип_затраты" Multiplicity="1" />
+          <End Role="Затрата" Type="Self.Затрата" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Тип_затраты">
+              <PropertyRef Name="Код_типа_затраты" />
+            </Principal>
+            <Dependent Role="Затрата">
+              <PropertyRef Name="Тип_затрат" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Площадка__Тип__5441852A">
+          <End Role="Тип_площадки" Type="Self.Тип_площадки" Multiplicity="0..1" />
+          <End Role="Площадка" Type="Self.Площадка" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Тип_площадки">
+              <PropertyRef Name="Код_типа_площадки" />
+            </Principal>
+            <Dependent Role="Площадка">
+              <PropertyRef Name="Тип" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Проект__Площадка__5EBF139D">
+          <End Role="Площадка" Type="Self.Площадка" Multiplicity="0..1" />
+          <End Role="Проект" Type="Self.Проект" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Площадка">
+              <PropertyRef Name="Код_площадки" />
+            </Principal>
+            <Dependent Role="Проект">
+              <PropertyRef Name="Площадка" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Пользоват__Код_р__4AB81AF0">
+          <End Role="Роль" Type="Self.Роль" Multiplicity="1" />
+          <End Role="Пользователь" Type="Self.Пользователь" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Роль">
+              <PropertyRef Name="Код_роли" />
+            </Principal>
+            <Dependent Role="Пользователь">
+              <PropertyRef Name="Код_роли" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Проект__Статус__5BE2A6F2">
+          <End Role="Статус_проекта" Type="Self.Статус_проекта" Multiplicity="0..1" />
+          <End Role="Проект" Type="Self.Проект" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Статус_проекта">
+              <PropertyRef Name="Код_статуса_проекта" />
+            </Principal>
+            <Dependent Role="Проект">
+              <PropertyRef Name="Статус" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Проект__Съемочна__5DCAEF64">
+          <End Role="Съемочная_группа" Type="Self.Съемочная_группа" Multiplicity="0..1" />
+          <End Role="Проект" Type="Self.Проект" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Съемочная_группа">
+              <PropertyRef Name="Код_съемочной_группы" />
+            </Principal>
+            <Dependent Role="Проект">
+              <PropertyRef Name="Съемочная_группа" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Проект__Тип__59FA5E80">
+          <End Role="Тип_проекта" Type="Self.Тип_проекта" Multiplicity="0..1" />
+          <End Role="Проект" Type="Self.Проект" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Тип_проекта">
+              <PropertyRef Name="Код_типа_проекта" />
+            </Principal>
+            <Dependent Role="Проект">
+              <PropertyRef Name="Тип" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Проект__Целевая___5CD6CB2B">
+          <End Role="Целевая_аудитория" Type="Self.Целевая_аудитория" Multiplicity="0..1" />
+          <End Role="Проект" Type="Self.Проект" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Целевая_аудитория">
+              <PropertyRef Name="Код_целевой_аудитории" />
+            </Principal>
+            <Dependent Role="Проект">
+              <PropertyRef Name="Целевая_аудитория" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Прокат__Проект__656C112C">
+          <End Role="Проект" Type="Self.Проект" Multiplicity="1" />
+          <End Role="Прокат" Type="Self.Прокат" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Проект">
+              <PropertyRef Name="Код_проекта" />
+            </Principal>
+            <Dependent Role="Прокат">
+              <PropertyRef Name="Проект" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Состав_гр__Сотру__5165187F">
+          <End Role="Сотрудник" Type="Self.Сотрудник" Multiplicity="1" />
+          <End Role="Состав_группы" Type="Self.Состав_группы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сотрудник">
+              <PropertyRef Name="Код_сотрудника" />
+            </Principal>
+            <Dependent Role="Состав_группы">
+              <PropertyRef Name="Сотрудник" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Состав_гр__Съемо__5070F446">
+          <End Role="Съемочная_группа" Type="Self.Съемочная_группа" Multiplicity="1" />
+          <End Role="Состав_группы" Type="Self.Состав_группы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Съемочная_группа">
+              <PropertyRef Name="Код_съемочной_группы" />
+            </Principal>
+            <Dependent Role="Состав_группы">
+              <PropertyRef Name="Съемочная_группа" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Сотрудник__Специ__4D94879B">
+          <End Role="Специализация" Type="Self.Специализация" Multiplicity="0..1" />
+          <End Role="Сотрудник" Type="Self.Сотрудник" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Специализация">
+              <PropertyRef Name="Код_специализации" />
+            </Principal>
+            <Dependent Role="Сотрудник">
+              <PropertyRef Name="Специализация" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FilmStudioEZEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="График_съемок" EntityType="Self.График_съемок" />
+          <EntitySet Name="Жанр" EntityType="Self.Жанр" />
+          <EntitySet Name="Затрата" EntityType="Self.Затрата" />
+          <EntitySet Name="Площадка" EntityType="Self.Площадка" />
+          <EntitySet Name="Пользователь" EntityType="Self.Пользователь" />
+          <EntitySet Name="Проект" EntityType="Self.Проект" />
+          <EntitySet Name="Прокат" EntityType="Self.Прокат" />
+          <EntitySet Name="Роль" EntityType="Self.Роль" />
+          <EntitySet Name="Состав_группы" EntityType="Self.Состав_группы" />
+          <EntitySet Name="Сотрудник" EntityType="Self.Сотрудник" />
+          <EntitySet Name="Специализация" EntityType="Self.Специализация" />
+          <EntitySet Name="Статус_проекта" EntityType="Self.Статус_проекта" />
+          <EntitySet Name="Съемочная_группа" EntityType="Self.Съемочная_группа" />
+          <EntitySet Name="Тип_затраты" EntityType="Self.Тип_затраты" />
+          <EntitySet Name="Тип_площадки" EntityType="Self.Тип_площадки" />
+          <EntitySet Name="Тип_проекта" EntityType="Self.Тип_проекта" />
+          <EntitySet Name="Целевая_аудитория" EntityType="Self.Целевая_аудитория" />
+          <AssociationSet Name="FK__График_съ__Площа__571DF1D5" Association="Self.FK__График_съ__Площа__571DF1D5">
+            <End Role="Площадка" EntitySet="Площадка" />
+            <End Role="График_съемок" EntitySet="График_съемок" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Проект__Жанр__5AEE82B9" Association="Self.FK__Проект__Жанр__5AEE82B9">
+            <End Role="Жанр" EntitySet="Жанр" />
+            <End Role="Проект" EntitySet="Проект" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Затрата__Проект__619B8048" Association="Self.FK__Затрата__Проект__619B8048">
+            <End Role="Проект" EntitySet="Проект" />
+            <End Role="Затрата" EntitySet="Затрата" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Затрата__Тип_зат__628FA481" Association="Self.FK__Затрата__Тип_зат__628FA481">
+            <End Role="Тип_затраты" EntitySet="Тип_затраты" />
+            <End Role="Затрата" EntitySet="Затрата" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Площадка__Тип__5441852A" Association="Self.FK__Площадка__Тип__5441852A">
+            <End Role="Тип_площадки" EntitySet="Тип_площадки" />
+            <End Role="Площадка" EntitySet="Площадка" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Проект__Площадка__5EBF139D" Association="Self.FK__Проект__Площадка__5EBF139D">
+            <End Role="Площадка" EntitySet="Площадка" />
+            <End Role="Проект" EntitySet="Проект" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Пользоват__Код_р__4AB81AF0" Association="Self.FK__Пользоват__Код_р__4AB81AF0">
+            <End Role="Роль" EntitySet="Роль" />
+            <End Role="Пользователь" EntitySet="Пользователь" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Проект__Статус__5BE2A6F2" Association="Self.FK__Проект__Статус__5BE2A6F2">
+            <End Role="Статус_проекта" EntitySet="Статус_проекта" />
+            <End Role="Проект" EntitySet="Проект" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Проект__Съемочна__5DCAEF64" Association="Self.FK__Проект__Съемочна__5DCAEF64">
+            <End Role="Съемочная_группа" EntitySet="Съемочная_группа" />
+            <End Role="Проект" EntitySet="Проект" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Проект__Тип__59FA5E80" Association="Self.FK__Проект__Тип__59FA5E80">
+            <End Role="Тип_проекта" EntitySet="Тип_проекта" />
+            <End Role="Проект" EntitySet="Проект" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Проект__Целевая___5CD6CB2B" Association="Self.FK__Проект__Целевая___5CD6CB2B">
+            <End Role="Целевая_аудитория" EntitySet="Целевая_аудитория" />
+            <End Role="Проект" EntitySet="Проект" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Прокат__Проект__656C112C" Association="Self.FK__Прокат__Проект__656C112C">
+            <End Role="Проект" EntitySet="Проект" />
+            <End Role="Прокат" EntitySet="Прокат" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Состав_гр__Сотру__5165187F" Association="Self.FK__Состав_гр__Сотру__5165187F">
+            <End Role="Сотрудник" EntitySet="Сотрудник" />
+            <End Role="Состав_группы" EntitySet="Состав_группы" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Состав_гр__Съемо__5070F446" Association="Self.FK__Состав_гр__Съемо__5070F446">
+            <End Role="Съемочная_группа" EntitySet="Съемочная_группа" />
+            <End Role="Состав_группы" EntitySet="Состав_группы" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Сотрудник__Специ__4D94879B" Association="Self.FK__Сотрудник__Специ__4D94879B">
+            <End Role="Специализация" EntitySet="Специализация" />
+            <End Role="Сотрудник" EntitySet="Сотрудник" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище FilmStudioEZModelContainer" CdmEntityContainer="FilmStudioEZEntities">
+          <EntitySetMapping Name="График_съемок">
+            <EntityTypeMapping TypeName="FilmStudioEZModel.График_съемок">
+              <MappingFragment StoreEntitySet="График_съемок">
+                <ScalarProperty Name="Код_графика_съемок" ColumnName="Код_графика_съемок" />
+                <ScalarProperty Name="Дата" ColumnName="Дата" />
+                <ScalarProperty Name="Время" ColumnName="Время" />
+                <ScalarProperty Name="Площадка" ColumnName="Площадка" />
+                <ScalarProperty Name="Сцена" ColumnName="Сцена" />
+                <ScalarProperty Name="Набор_сотрудников" ColumnName="Набор_сотрудников" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Жанр">
+            <EntityTypeMapping TypeName="FilmStudioEZModel.Жанр">
+              <MappingFragment StoreEntitySet="Жанр">
+                <ScalarProperty Name="Код_жанра" ColumnName="Код_жанра" />
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Затрата">
+            <EntityTypeMapping TypeName="FilmStudioEZModel.Затрата">
+              <MappingFragment StoreEntitySet="Затрата">
+                <ScalarProperty Name="Код_затраты" ColumnName="Код_затраты" />
+                <ScalarProperty Name="Проект" ColumnName="Проект" />
+                <ScalarProperty Name="Тип_затрат" ColumnName="Тип_затрат" />
+                <ScalarProperty Name="Сумма" ColumnName="Сумма" />
+                <ScalarProperty Name="Дата" ColumnName="Дата" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Площадка">
+            <EntityTypeMapping TypeName="FilmStudioEZModel.Площадка">
+              <MappingFragment StoreEntitySet="Площадка">
+                <ScalarProperty Name="Код_площадки" ColumnName="Код_площадки" />
+                <ScalarProperty Name="Адрес" ColumnName="Адрес" />
+                <ScalarProperty Name="Тип" ColumnName="Тип" />
+                <ScalarProperty Name="Стоимость_аренды_в_день" ColumnName="Стоимость_аренды_в_день" />
+                <ScalarProperty Name="Вместимость" ColumnName="Вместимость" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Пользователь">
+            <EntityTypeMapping TypeName="FilmStudioEZModel.Пользователь">
+              <MappingFragment StoreEntitySet="Пользователь">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Логин" ColumnName="Логин" />
+                <ScalarProperty Name="ПарольХеш" ColumnName="ПарольХеш" />
+                <ScalarProperty Name="Имя" ColumnName="Имя" />
+                <ScalarProperty Name="Код_роли" ColumnName="Код_роли" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Проект">
+            <EntityTypeMapping TypeName="FilmStudioEZModel.Проект">
+              <MappingFragment StoreEntitySet="Проект">
+                <ScalarProperty Name="Код_проекта" ColumnName="Код_проекта" />
+                <ScalarProperty Name="Название" ColumnName="Название" />
+                <ScalarProperty Name="Тип" ColumnName="Тип" />
+                <ScalarProperty Name="Жанр" ColumnName="Жанр" />
+                <ScalarProperty Name="Бюджет" ColumnName="Бюджет" />
+                <ScalarProperty Name="Дата_начала_съемок" ColumnName="Дата_начала_съемок" />
+                <ScalarProperty Name="Дата_окончания_съемок" ColumnName="Дата_окончания_съемок" />
+                <ScalarProperty Name="Статус" ColumnName="Статус" />
+                <ScalarProperty Name="Целевая_аудитория" ColumnName="Целевая_аудитория" />
+                <ScalarProperty Name="Съемочная_группа" ColumnName="Съемочная_группа" />
+                <ScalarProperty Name="Площадка" ColumnName="Площадка" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Прокат">
+            <EntityTypeMapping TypeName="FilmStudioEZModel.Прокат">
+              <MappingFragment StoreEntitySet="Прокат">
+                <ScalarProperty Name="Код_проката" ColumnName="Код_проката" />
+                <ScalarProperty Name="Проект" ColumnName="Проект" />
+                <ScalarProperty Name="Дата_выхода" ColumnName="Дата_выхода" />
+                <ScalarProperty Name="Количество_кинотеатров" ColumnName="Количество_кинотеатров" />
+                <ScalarProperty Name="Сборы" ColumnName="Сборы" />
+                <ScalarProperty Name="Рейтинг" ColumnName="Рейтинг" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Роль">
+            <EntityTypeMapping TypeName="FilmStudioEZModel.Роль">
+              <MappingFragment StoreEntitySet="Роль">
+                <ScalarProperty Name="Код_роли" ColumnName="Код_роли" />
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Состав_группы">
+            <EntityTypeMapping TypeName="FilmStudioEZModel.Состав_группы">
+              <MappingFragment StoreEntitySet="Состав_группы">
+                <ScalarProperty Name="Код_состава_группы" ColumnName="Код_состава_группы" />
+                <ScalarProperty Name="Съемочная_группа" ColumnName="Съемочная_группа" />
+                <ScalarProperty Name="Сотрудник" ColumnName="Сотрудник" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Сотрудник">
+            <EntityTypeMapping TypeName="FilmStudioEZModel.Сотрудник">
+              <MappingFragment StoreEntitySet="Сотрудник">
+                <ScalarProperty Name="Код_сотрудника" ColumnName="Код_сотрудника" />
+                <ScalarProperty Name="Табельный_номер" ColumnName="Табельный_номер" />
+                <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+                <ScalarProperty Name="Имя" ColumnName="Имя" />
+                <ScalarProperty Name="Специализация" ColumnName="Специализация" />
+                <ScalarProperty Name="Ставка" ColumnName="Ставка" />
+                <ScalarProperty Name="Номер_телефона" ColumnName="Номер_телефона" />
+                <ScalarProperty Name="Почта" ColumnName="Почта" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Специализация">
+            <EntityTypeMapping TypeName="FilmStudioEZModel.Специализация">
+              <MappingFragment StoreEntitySet="Специализация">
+                <ScalarProperty Name="Код_специализации" ColumnName="Код_специализации" />
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Статус_проекта">
+            <EntityTypeMapping TypeName="FilmStudioEZModel.Статус_проекта">
+              <MappingFragment StoreEntitySet="Статус_проекта">
+                <ScalarProperty Name="Код_статуса_проекта" ColumnName="Код_статуса_проекта" />
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Съемочная_группа">
+            <EntityTypeMapping TypeName="FilmStudioEZModel.Съемочная_группа">
+              <MappingFragment StoreEntitySet="Съемочная_группа">
+                <ScalarProperty Name="Код_съемочной_группы" ColumnName="Код_съемочной_группы" />
+                <ScalarProperty Name="Название_группы" ColumnName="Название_группы" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Тип_затраты">
+            <EntityTypeMapping TypeName="FilmStudioEZModel.Тип_затраты">
+              <MappingFragment StoreEntitySet="Тип_затраты">
+                <ScalarProperty Name="Код_типа_затраты" ColumnName="Код_типа_затраты" />
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Тип_площадки">
+            <EntityTypeMapping TypeName="FilmStudioEZModel.Тип_площадки">
+              <MappingFragment StoreEntitySet="Тип_площадки">
+                <ScalarProperty Name="Код_типа_площадки" ColumnName="Код_типа_площадки" />
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Тип_проекта">
+            <EntityTypeMapping TypeName="FilmStudioEZModel.Тип_проекта">
+              <MappingFragment StoreEntitySet="Тип_проекта">
+                <ScalarProperty Name="Код_типа_проекта" ColumnName="Код_типа_проекта" />
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Целевая_аудитория">
+            <EntityTypeMapping TypeName="FilmStudioEZModel.Целевая_аудитория">
+              <MappingFragment StoreEntitySet="Целевая_аудитория">
+                <ScalarProperty Name="Код_целевой_аудитории" ColumnName="Код_целевой_аудитории" />
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
